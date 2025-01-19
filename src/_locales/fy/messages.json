@@ -275,13 +275,13 @@
     "message": "Ferzje",
     "description": "Example of use: Version 1.26.4"
   },
-  "popup3pScriptFilterTip": {
-    "message": "↑: Rigen mei scripts fan tredden klam jaan",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
+  "popup3pScriptFilter": {
+    "message": "script",
+    "description": "Appears as an option to filter out firewall rows"
   },
-  "popup3pFrameFilterTip": {
-    "message": "↑: Rigen mei frames fan tredden klam jaan",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
+  "popup3pFrameFilter": {
+    "message": "frame",
+    "description": "Appears as an option to filter out firewall rows"
   },
   "pickerCreate": {
     "message": "Meitsje",
@@ -469,35 +469,43 @@
   },
   "3pGroupDefault": {
     "message": "Lokaal",
-    "description": "Header for the uBlock filters section in 'Filter lists pane'"
+    "description": "Filter lists section name"
   },
   "3pGroupAds": {
     "message": "Advertinsjes",
-    "description": "English: Ads"
+    "description": "Filter lists section name"
   },
   "3pGroupPrivacy": {
     "message": "Privacy",
-    "description": "English: Privacy"
+    "description": "Filter lists section name"
   },
   "3pGroupMalware": {
     "message": "Malwaredomeinen",
-    "description": "English: Malware domains"
+    "description": "Filter lists section name"
+  },
+  "3pGroupSocial": {
+    "message": "Sosjale widgets",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "Cookiemeldingen",
+    "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
     "message": "Ungeriif",
-    "description": "The header identifying the filter lists in the category 'annoyances'"
+    "description": "Filter lists section name"
   },
   "3pGroupMultipurpose": {
     "message": "Multifunksjoneel",
-    "description": "English: Multipurpose"
+    "description": "Filter lists section name"
   },
   "3pGroupRegions": {
     "message": "Gebieden, talen",
-    "description": "English: Regions, languages"
+    "description": "Filter lists section name"
   },
   "3pGroupCustom": {
     "message": "Oanpast",
-    "description": "English: Custom"
+    "description": "Filter lists section name"
   },
   "3pImport": {
     "message": "Ymportearje…",
@@ -527,17 +535,25 @@
     "message": "In netwurkflater hat opkeard dat de boarne bywurke waard.",
     "description": "used as a tooltip for error icon beside a list"
   },
-  "1pFormatHint": {
-    "message": "Ien filter per rigel. In filter kin in gewoane hostnamme of in Adblock Plus-kompatibel filter wêze. Rigels begjinnend mei <code>!</code> wurde negearre.",
-    "description": "Short information about how to create custom filters"
+  "1pTrustWarning": {
+    "message": "Foegje gjin filters fan ûnbekende boarnen ta.",
+    "description": "Warning against copy-pasting filters from random sources"
+  },
+  "1pEnableMyFiltersLabel": {
+    "message": "Myn oanpaste filters ynskeakelje",
+    "description": "Label for the checkbox use to enable/disable 'My filters' list"
+  },
+  "1pTrustMyFiltersLabel": {
+    "message": "Oanpaste filters dy’t fertrouwen fereaskje tastean",
+    "description": "Label for the checkbox use to trust the content of 'My filters' list"
   },
   "1pImport": {
     "message": "Ymportearje en tafoegje",
-    "description": "English: Import and append"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExport": {
     "message": "Eksportearje",
-    "description": "English: Export"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExportFilename": {
     "message": "myn-ublock-statyske-filters_{{datetime}}.txt",
@@ -581,7 +597,7 @@
   },
   "rulesExport": {
     "message": "Nei bestân eksportearje",
-    "description": ""
+    "description": "Button in the 'My rules' pane"
   },
   "rulesDefaultFileName": {
     "message": "myn-ublock-dynamyske-rigels_{{datetime}}.txt",
@@ -617,11 +633,11 @@
   },
   "whitelistImport": {
     "message": "Ymportearje en tafoegje",
-    "description": "English: Import and append"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExport": {
     "message": "Eksportearje",
-    "description": "English: Export"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExportFilename": {
     "message": "myn-ublock-whitelist_{{datetime}}.txt",
@@ -951,6 +967,14 @@
     "message": "Kontrolearje oft it probleem net earder meld is om foar te kommen dat frijwilligers mei dûbele meldingen belêst wurde.",
     "description": "A paragraph in the filter issue reporter section"
   },
+  "supportS6P2S1": {
+    "message": "Filterlisten wurde elke dei bywurke. Kontrolearje oft jo probleem net al yn de meast resinte filterlisten ferholpen is.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6P2S2": {
+    "message": "Kontrolearje oft it probleem noch hieltyd bestiet nei opnij laden fan de problematyske webside.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
   "supportS6URL": {
     "message": "Adres fan de webside:",
     "description": "Label for the URL of the page"
@@ -985,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "Iepenet net-winske ljepblêden of finsters",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Liedt ta badware, phishing",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1040,7 +1068,7 @@
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
-    "message": "Reservekopy nei bestân",
+    "message": "Reservekopy nei bestân meitsje…",
     "description": "Text for button to create a backup of all settings"
   },
   "aboutBackupFilename": {
@@ -1115,6 +1143,10 @@
     "message": "útskeakele",
     "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
   },
+  "docblockedTitle": {
+    "message": "Side blokkearre",
+    "description": "Used as a title for the document-blocked page"
+  },
   "docblockedPrompt1": {
     "message": "uBlock Origin hat it laden fan de folgjende side opkeard:",
     "description": "Used in the strict-blocking page"
@@ -1139,6 +1171,10 @@
     "message": "Dit finster slute",
     "description": "English: Close this window"
   },
+  "docblockedDontWarn": {
+    "message": "My net mear warskôgje oer dizze website",
+    "description": "Label for checkbox in document-blocked page"
+  },
   "docblockedProceed": {
     "message": "Strikte blokkearring foar {{hostname}} útskeakelje",
     "description": "English: Disable strict blocking for {{hostname}} ..."
@@ -1150,6 +1186,14 @@
   "docblockedDisablePermanent": {
     "message": "Permanint",
     "description": "English: Permanently"
+  },
+  "docblockedDisable": {
+    "message": "Trochgean",
+    "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "De blokkearre side wol nei in oare website trochferwize. As jo fierder gean, wurdt de folgjende side oproppen: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Eksportearje nei cloudûnthâld",
@@ -1203,6 +1247,10 @@
     "message": "Grutte media-eleminten tydlik tastean",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
   },
+  "contextMenuViewSource": {
+    "message": "Boarnekoade besjen…",
+    "description": "A context menu entry, to view the source code of the target resource"
+  },
   "shortcutCapturePlaceholder": {
     "message": "Typ in fluchtoets",
     "description": "Placeholder string for input field used to capture a keyboard shortcut"
@@ -1222,6 +1270,10 @@
   "toggleCosmeticFiltering": {
     "message": "Kosmetyske filters yn-/útskeakelje",
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
+  },
+  "toggleJavascript": {
+    "message": "JavaScript yn-/útskeakelje",
+    "description": "Label for keyboard shortcut used to toggle no-scripting switch"
   },
   "relaxBlockingMode": {
     "message": "Blokkearringsmodus beheine",
@@ -1246,6 +1298,14 @@
   "clickToLoad": {
     "message": "Klik om te laden",
     "description": "Message used in frame placeholders"
+  },
+  "linterMainReport": {
+    "message": "Flaters: {{count}}",
+    "description": "Summary of number of errors as reported by the linter "
+  },
+  "unprocessedRequestTooltip": {
+    "message": "Koe net goed filterje by starten fan browser.\nFernij de side foar in goede filtering.",
+    "description": "A warning which will appear in the popup panel if needed"
   },
   "dummy": {
     "message": "This entry must be the last one",

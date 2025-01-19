@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock Origin - a browser extension to block requests.
+    uBlock Origin - a comprehensive, efficient content blocker
     Copyright (C) 2015-present Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -19,27 +19,21 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-'use strict';
-
-/******************************************************************************/
-
-import staticNetFilteringEngine from './static-net-filtering.js';
-import µb from './background.js';
-import { CompiledListWriter } from './static-filtering-io.js';
-import { StaticFilteringParser } from './static-filtering-parser.js';
-
+import * as sfp from './static-filtering-parser.js';
 import {
     domainFromHostname,
     hostnameFromURI,
 } from './uri-utils.js';
+import { CompiledListWriter } from './static-filtering-io.js';
+import { i18n$ } from './i18n.js';
+import staticNetFilteringEngine from './static-net-filtering.js';
+import µb from './background.js';
 
 /******************************************************************************/
 
-const workerTTL = 5 * 60 * 1000;
 const pendingResponses = new Map();
 
 let worker = null;
-let workerTTLTimer;
 let needLists = true;
 let messageId = 1;
 
@@ -51,10 +45,7 @@ const onWorkerMessage = function(e) {
 };
 
 const stopWorker = function() {
-    if ( workerTTLTimer !== undefined ) {
-        clearTimeout(workerTTLTimer);
-        workerTTLTimer = undefined;
-    }
+    workerTTLTimer.off();
     if ( worker === null ) { return; }
     worker.terminate();
     worker = null;
@@ -65,6 +56,9 @@ const stopWorker = function() {
     pendingResponses.clear();
 };
 
+const workerTTLTimer = vAPI.defer.create(stopWorker);
+const workerTTL = { min: 1.5 };
+
 const initWorker = function() {
     if ( worker === null ) {
         worker = new Worker('js/reverselookup-worker.js');
@@ -72,10 +66,7 @@ const initWorker = function() {
     }
 
     // The worker will be shutdown after n minutes without being used.
-    if ( workerTTLTimer !== undefined ) {
-        clearTimeout(workerTTLTimer);
-    }
-    workerTTLTimer = vAPI.setTimeout(stopWorker, workerTTL);
+    workerTTLTimer.offon(workerTTL);
 
     if ( needLists === false ) {
         return Promise.resolve();
@@ -110,7 +101,7 @@ const initWorker = function() {
         entries.set(listKey, {
             title: listKey !== µb.userFiltersPath ?
                 entry.title :
-                vAPI.i18n('1pPageName'),
+                i18n$('1pPageName'),
             supportURL: entry.supportURL || ''
         });
     }
@@ -133,21 +124,24 @@ const fromNetFilter = async function(rawFilter) {
     if ( typeof rawFilter !== 'string' || rawFilter === '' ) { return; }
 
     const writer = new CompiledListWriter();
-    const parser = new StaticFilteringParser();
-    parser.setMaxTokenLength(staticNetFilteringEngine.MAX_TOKEN_LENGTH);
-    parser.analyze(rawFilter);
+    const parser = new sfp.AstFilterParser({
+        trustedSource: true,
+        maxTokenLength: staticNetFilteringEngine.MAX_TOKEN_LENGTH,
+        nativeCssHas: vAPI.webextFlavor.env.includes('native_css_has'),
+    });
+    parser.parse(rawFilter);
 
-    const compiler = staticNetFilteringEngine.createCompiler(parser);
-    if ( compiler.compile(writer) === false ) { return; }
+    const compiler = staticNetFilteringEngine.createCompiler();
+    if ( compiler.compile(parser, writer) === false ) { return; }
 
     await initWorker();
 
     const id = messageId++;
     worker.postMessage({
         what: 'fromNetFilter',
-        id: id,
+        id,
         compiledFilter: writer.last(),
-        rawFilter: rawFilter
+        rawFilter,
     });
 
     return new Promise(resolve => {
@@ -168,11 +162,21 @@ const fromExtendedFilter = async function(details) {
     const id = messageId++;
     const hostname = hostnameFromURI(details.url);
 
+    const parser = new sfp.AstFilterParser({
+        trustedSource: true,
+        nativeCssHas: vAPI.webextFlavor.env.includes('native_css_has'),
+    });
+    parser.parse(details.rawFilter);
+    let compiled;
+    if ( parser.isScriptletFilter() ) {
+        compiled = JSON.stringify(parser.getScriptletArgs());
+    }
+
     worker.postMessage({
         what: 'fromExtendedFilter',
-        id: id,
+        id,
         domain: domainFromHostname(hostname),
-        hostname: hostname,
+        hostname,
         ignoreGeneric:
             staticNetFilteringEngine.matchRequestReverse(
                 'generichide',
@@ -183,7 +187,8 @@ const fromExtendedFilter = async function(details) {
                 'specifichide',
                 details.url
             ) === 2,
-        rawFilter: details.rawFilter
+        rawFilter: details.rawFilter,
+        compiled,
     });
 
     return new Promise(resolve => {

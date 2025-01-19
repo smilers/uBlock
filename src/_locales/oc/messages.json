@@ -188,11 +188,11 @@
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupNoPopups_v2": {
-    "message": "Pop-up windows",
+    "message": "Fenèstras sorgissentas",
     "description": "Caption for the no-popups per-site switch"
   },
   "popupNoLargeMedia_v2": {
-    "message": "Large media elements",
+    "message": "Mèdias de granda talha",
     "description": "Caption for the no-large-media per-site switch"
   },
   "popupNoCosmeticFiltering_v2": {
@@ -248,7 +248,7 @@
     "description": ""
   },
   "popupInlineScriptRulePrompt": {
-    "message": "inline scripts",
+    "message": "scripts en una linha",
     "description": ""
   },
   "popup1pScriptRulePrompt": {
@@ -264,7 +264,7 @@
     "description": ""
   },
   "popupHitDomainCountPrompt": {
-    "message": "domains connected",
+    "message": "domenis connectats",
     "description": "appears in popup"
   },
   "popupHitDomainCount": {
@@ -275,13 +275,13 @@
     "message": "Version",
     "description": "Example of use: Version 1.26.4"
   },
-  "popup3pScriptFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party scripts",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
+  "popup3pScriptFilter": {
+    "message": "script",
+    "description": "Appears as an option to filter out firewall rows"
   },
-  "popup3pFrameFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party frames",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
+  "popup3pFrameFilter": {
+    "message": "frame",
+    "description": "Appears as an option to filter out firewall rows"
   },
   "pickerCreate": {
     "message": "Crear",
@@ -332,7 +332,7 @@
     "description": "English: Make use of context menu where appropriate"
   },
   "settingsColorBlindPrompt": {
-    "message": "Color-blind friendly",
+    "message": "De bon usar pels daltonians",
     "description": "English: Color-blind friendly"
   },
   "settingsAppearance": {
@@ -352,7 +352,7 @@
     "description": ""
   },
   "settingsAdvancedUserPrompt": {
-    "message": "I am an advanced user",
+    "message": "Soi un-a utilizaire-a avandat-ada",
     "description": "Checkbox to let user access advanced, technical features"
   },
   "settingsPrefetchingDisabledPrompt": {
@@ -428,7 +428,7 @@
     "description": "Appears aside each filter list in the _3rd-party filters_ pane"
   },
   "3pAutoUpdatePrompt1": {
-    "message": "Auto-update filter lists",
+    "message": "Mesa a jorn auto de las listas",
     "description": "A checkbox in the _3rd-party filters_ pane"
   },
   "3pUpdateNow": {
@@ -468,36 +468,44 @@
     "description": "English: Apply changes"
   },
   "3pGroupDefault": {
-    "message": "Built-in",
-    "description": "Header for the uBlock filters section in 'Filter lists pane'"
+    "message": "Integrats",
+    "description": "Filter lists section name"
   },
   "3pGroupAds": {
     "message": "Publicitats",
-    "description": "English: Ads"
+    "description": "Filter lists section name"
   },
   "3pGroupPrivacy": {
     "message": "Confidencialitat",
-    "description": "English: Privacy"
+    "description": "Filter lists section name"
   },
   "3pGroupMalware": {
     "message": "Domenis malfasents",
-    "description": "English: Malware domains"
+    "description": "Filter lists section name"
+  },
+  "3pGroupSocial": {
+    "message": "Social widgets",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "Cookie notices",
+    "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
     "message": "Annoyances",
-    "description": "The header identifying the filter lists in the category 'annoyances'"
+    "description": "Filter lists section name"
   },
   "3pGroupMultipurpose": {
     "message": "Multipurpose",
-    "description": "English: Multipurpose"
+    "description": "Filter lists section name"
   },
   "3pGroupRegions": {
     "message": "Regions, lengas",
-    "description": "English: Regions, languages"
+    "description": "Filter lists section name"
   },
   "3pGroupCustom": {
     "message": "Personalizat",
-    "description": "English: Custom"
+    "description": "Filter lists section name"
   },
   "3pImport": {
     "message": "Importar...",
@@ -527,17 +535,25 @@
     "message": "A network error prevented the resource from being updated.",
     "description": "used as a tooltip for error icon beside a list"
   },
-  "1pFormatHint": {
-    "message": "One filter per line. A filter can be a plain hostname, or an EasyList-compatible filter. Lines prefixed with <code>!</code> will be ignored.",
-    "description": "Short information about how to create custom filters"
+  "1pTrustWarning": {
+    "message": "Do not add filters from untrusted sources.",
+    "description": "Warning against copy-pasting filters from random sources"
+  },
+  "1pEnableMyFiltersLabel": {
+    "message": "Enable my custom filters",
+    "description": "Label for the checkbox use to enable/disable 'My filters' list"
+  },
+  "1pTrustMyFiltersLabel": {
+    "message": "Allow custom filters requiring trust",
+    "description": "Label for the checkbox use to trust the content of 'My filters' list"
   },
   "1pImport": {
     "message": "Importar e apondre",
-    "description": "English: Import and append"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExport": {
     "message": "Exportar",
-    "description": "English: Export"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExportFilename": {
     "message": "mos-filtres-estatics-ublock_{{datetime}}.txt",
@@ -580,8 +596,8 @@
     "description": ""
   },
   "rulesExport": {
-    "message": "Export to file",
-    "description": ""
+    "message": "Export to file…",
+    "description": "Button in the 'My rules' pane"
   },
   "rulesDefaultFileName": {
     "message": "my-ublock-dynamic-rules_{{datetime}}.txt",
@@ -600,7 +616,7 @@
     "description": "English: label for sort option."
   },
   "rulesSortByType": {
-    "message": "Rule type",
+    "message": "Tipe de règla",
     "description": "English: a sort option for list of rules."
   },
   "rulesSortBySource": {
@@ -616,12 +632,12 @@
     "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
-    "message": "Import and append",
-    "description": "English: Import and append"
+    "message": "Import and append…",
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExport": {
     "message": "Exportar",
-    "description": "English: Export"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExportFilename": {
     "message": "my-ublock-trusted-sites_{{datetime}}.txt",
@@ -656,7 +672,7 @@
     "description": "Pretty name for behind-the-scene network requests"
   },
   "loggerCurrentTab": {
-    "message": "Current tab",
+    "message": "Onglet actual",
     "description": "Appears in the logger's tab selector"
   },
   "loggerReloadTip": {
@@ -924,7 +940,7 @@
     "description": "Third paragraph of 'Filter issues' section in Support pane"
   },
   "supportS4H": {
-    "message": "Bug report",
+    "message": "Senhalament d’avarias",
     "description": "Header of 'Bug report' section in Support pane"
   },
   "supportS4P1": {
@@ -949,6 +965,14 @@
   },
   "supportS6P1S1": {
     "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6P2S1": {
+    "message": "Filter lists are updated daily. Be sure your issue has not already been addressed in the most recent filter lists.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6P2S2": {
+    "message": "Verify that the issue still exists after reloading the problematic webpage.",
     "description": "A paragraph in the filter issue reporter section"
   },
   "supportS6URL": {
@@ -987,6 +1011,10 @@
     "message": "Opens unwanted tabs or windows",
     "description": "An entry in the widget used to select the type of issue"
   },
+  "supportS6Select1Option7": {
+    "message": "Leads to badware, phishing",
+    "description": "An entry in the widget used to select the type of issue"
+  },
   "supportS6Checkbox1": {
     "message": "Label the web page as “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
     "description": "A checkbox to use for NSFW sites"
@@ -1000,11 +1028,11 @@
     "description": "Text for 'Unredact' button"
   },
   "aboutPrivacyPolicy": {
-    "message": "Privacy policy",
+    "message": "Politica de confidencialitat",
     "description": "Link to privacy policy on GitHub (English)"
   },
   "aboutChangelog": {
-    "message": "Changelog",
+    "message": "Jornal de modificacions",
     "description": ""
   },
   "aboutCode": {
@@ -1024,7 +1052,7 @@
     "description": "Link text to translations repo"
   },
   "aboutFilterLists": {
-    "message": "Filter lists",
+    "message": "Listas de filtres",
     "description": "Link text to uBO's own filter lists repo"
   },
   "aboutDependencies": {
@@ -1036,11 +1064,11 @@
     "description": "Shown in the About pane"
   },
   "aboutCDNsInfo": {
-    "message": "A randomly picked CDN is used when a filter list needs to be updated",
+    "message": "A randomly picked CDN is used when a filter list needs to be updated.",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
-    "message": "Back up to file",
+    "message": "Back up to file…",
     "description": "Text for button to create a backup of all settings"
   },
   "aboutBackupFilename": {
@@ -1076,7 +1104,7 @@
     "description": "No longer used"
   },
   "subscribeButton": {
-    "message": "Subscribe",
+    "message": "S'abonar",
     "description": "For the button used to subscribe to a filter list"
   },
   "elapsedOneMinuteAgo": {
@@ -1115,12 +1143,16 @@
     "message": "off",
     "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
   },
+  "docblockedTitle": {
+    "message": "Pagina blocada",
+    "description": "Used as a title for the document-blocked page"
+  },
   "docblockedPrompt1": {
     "message": "uBlock Origin a empachat lo cargament de la pagina seguenta :",
     "description": "Used in the strict-blocking page"
   },
   "docblockedPrompt2": {
-    "message": "A causa del filtre seguent",
+    "message": "A causa del filtre seguent :",
     "description": "Used in the strict-blocking page"
   },
   "docblockedNoParamsPrompt": {
@@ -1139,6 +1171,10 @@
     "message": "Tampar aquesta fenèstra",
     "description": "English: Close this window"
   },
+  "docblockedDontWarn": {
+    "message": "M’assabentar pas mai per aqueste site",
+    "description": "Label for checkbox in document-blocked page"
+  },
   "docblockedProceed": {
     "message": "Desactivar lo blocatge estric del domeni {{hostname}}",
     "description": "English: Disable strict blocking for {{hostname}} ..."
@@ -1150,6 +1186,14 @@
   "docblockedDisablePermanent": {
     "message": "Permanentament",
     "description": "English: Permanently"
+  },
+  "docblockedDisable": {
+    "message": "Contunhar",
+    "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "La pagina blocada vòl redirigir cap a un autre site. Se causissètz de perseguir, aniretz dirèctament a : {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "Export to cloud storage",
@@ -1184,11 +1228,11 @@
     "description": "for generic 'Apply changes' buttons"
   },
   "genericRevert": {
-    "message": "Revert",
+    "message": "Restablir",
     "description": "for generic 'Revert' buttons"
   },
   "genericBytes": {
-    "message": "bytes",
+    "message": "octets",
     "description": ""
   },
   "contextMenuBlockElementInFrame": {
@@ -1203,6 +1247,10 @@
     "message": "Permetre temporàriament los elements mèdias larges",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
   },
+  "contextMenuViewSource": {
+    "message": "View source code…",
+    "description": "A context menu entry, to view the source code of the target resource"
+  },
   "shortcutCapturePlaceholder": {
     "message": "Picar un acorchi",
     "description": "Placeholder string for input field used to capture a keyboard shortcut"
@@ -1216,12 +1264,16 @@
     "description": "Label for buttons used to copy something to the clipboard"
   },
   "genericSelectAll": {
-    "message": "Select all",
+    "message": "Tot seleccionar",
     "description": "Label for buttons used to select all text in editor"
   },
   "toggleCosmeticFiltering": {
     "message": "Toggle cosmetic filtering",
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
+  },
+  "toggleJavascript": {
+    "message": "Toggle JavaScript",
+    "description": "Label for keyboard shortcut used to toggle no-scripting switch"
   },
   "relaxBlockingMode": {
     "message": "Relax blocking mode",
@@ -1246,6 +1298,14 @@
   "clickToLoad": {
     "message": "Clicatz per cargar",
     "description": "Message used in frame placeholders"
+  },
+  "linterMainReport": {
+    "message": "Errors: {{count}}",
+    "description": "Summary of number of errors as reported by the linter "
+  },
+  "unprocessedRequestTooltip": {
+    "message": "Could not filter properly at browser launch. Reload the page to ensure proper filtering.",
+    "description": "A warning which will appear in the popup panel if needed"
   },
   "dummy": {
     "message": "This entry must be the last one",

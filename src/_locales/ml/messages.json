@@ -56,7 +56,7 @@
     "description": "appears as tab name in dashboard"
   },
   "supportPageName": {
-    "message": "Support",
+    "message": "സഹായം ",
     "description": "appears as tab name in dashboard"
   },
   "assetViewerPageName": {
@@ -128,7 +128,7 @@
     "description": "Tooltip used for the logger icon in the panel"
   },
   "popupTipReport": {
-    "message": "Report an issue on this website",
+    "message": "ഈ വെബ്‌സൈറ്റിൽ ഉള്ള പ്രശ്നങ്ങൾ അറിയിക്കുക ",
     "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
@@ -275,13 +275,13 @@
     "message": "പതിപ്പ്",
     "description": "Example of use: Version 1.26.4"
   },
-  "popup3pScriptFilterTip": {
-    "message": "↑: മൂന്നാം കക്ഷി സ്ക്രിപ്റ്റുകൾ ഉള്ള വരികൾ izeന്നിപ്പറയുക",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
+  "popup3pScriptFilter": {
+    "message": "script",
+    "description": "Appears as an option to filter out firewall rows"
   },
-  "popup3pFrameFilterTip": {
-    "message": "↑: മൂന്നാം കക്ഷി ഫ്രെയിമുകളുള്ള വരികൾക്ക് പ്രാധാന്യം നൽകുക",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
+  "popup3pFrameFilter": {
+    "message": "frame",
+    "description": "Appears as an option to filter out firewall rows"
   },
   "pickerCreate": {
     "message": "ക്രിയേറ്റ് ചെയ്യുക",
@@ -400,7 +400,7 @@
     "description": "background information: https://github.com/uBlockOrigin/uBlock-issues/issues/1513"
   },
   "settingsAdvanced": {
-    "message": "Advanced",
+    "message": "വിപുലമായ ക്രമീകരണങ്ങൾ",
     "description": "Section for controlling advanced-user settings"
   },
   "settingsAdvancedSynopsis": {
@@ -469,35 +469,43 @@
   },
   "3pGroupDefault": {
     "message": "അന്തർനിർമ്മിതം",
-    "description": "Header for the uBlock filters section in 'Filter lists pane'"
+    "description": "Filter lists section name"
   },
   "3pGroupAds": {
     "message": "പരസ്യങ്ങള്‍",
-    "description": "English: Ads"
+    "description": "Filter lists section name"
   },
   "3pGroupPrivacy": {
     "message": "സ്വകാര്യത",
-    "description": "English: Privacy"
+    "description": "Filter lists section name"
   },
   "3pGroupMalware": {
     "message": "മാല്‍വെയര്‍ ഡൊമൈനുകള്‍",
-    "description": "English: Malware domains"
+    "description": "Filter lists section name"
+  },
+  "3pGroupSocial": {
+    "message": "Social widgets",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "Cookie notices",
+    "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
     "message": "ശല്യപ്പെടുത്തലുകൾ",
-    "description": "The header identifying the filter lists in the category 'annoyances'"
+    "description": "Filter lists section name"
   },
   "3pGroupMultipurpose": {
     "message": "മള്‍ട്ടിപര്‍പ്പസ്",
-    "description": "English: Multipurpose"
+    "description": "Filter lists section name"
   },
   "3pGroupRegions": {
     "message": "പ്രാദേശികം, ഭാഷകള്‍",
-    "description": "English: Regions, languages"
+    "description": "Filter lists section name"
   },
   "3pGroupCustom": {
     "message": "കസ്റ്റം",
-    "description": "English: Custom"
+    "description": "Filter lists section name"
   },
   "3pImport": {
     "message": "ഇറക്കുമതി ചെയ്യുക ...",
@@ -520,24 +528,32 @@
     "description": "used as a tooltip for the clock icon beside a list"
   },
   "3pUpdating": {
-    "message": "അപ്‌ഡേറ്റുചെയ്യുന്നു ...",
+    "message": "അപ്‌ഡേറ്റുചെയ്യുന്നു...",
     "description": "used as a tooltip for the spinner icon beside a list"
   },
   "3pNetworkError": {
     "message": "ഒരു നെറ്റ്‌വർക്ക് പിശക് ഉറവിടം അപ്‌ഡേറ്റുചെയ്യുന്നതിൽ നിന്ന് തടഞ്ഞു.",
     "description": "used as a tooltip for error icon beside a list"
   },
-  "1pFormatHint": {
-    "message": "ഒരു വരിയില്‍ ഒരു ഫില്‍റ്റര്‍ എന്ന രീതിയില്‍. ഒരു ഫില്‍റ്റര്‍ എന്നത്, ഹോസ്റ്റ് നെയിം, അല്ലെങ്കില്‍ ആഡ് ബ്ലോക്ക് പ്ലസ്‌-നോട്‌ കംപാറ്റബിള്‍ ആയ ഫില്‍റ്റര്‍ എന്നിവ ആകാം. &lsquo;!&rsquo; എന്നിവയില്‍ ആരംഭിക്കുന്ന വരികള്‍ ഇഗ്നോര്‍ ചെയ്യപ്പെടും.",
-    "description": "Short information about how to create custom filters"
+  "1pTrustWarning": {
+    "message": "Do not add filters from untrusted sources.",
+    "description": "Warning against copy-pasting filters from random sources"
+  },
+  "1pEnableMyFiltersLabel": {
+    "message": "Enable my custom filters",
+    "description": "Label for the checkbox use to enable/disable 'My filters' list"
+  },
+  "1pTrustMyFiltersLabel": {
+    "message": "Allow custom filters requiring trust",
+    "description": "Label for the checkbox use to trust the content of 'My filters' list"
   },
   "1pImport": {
     "message": "ഇമ്പോര്‍ട്ടും കൂട്ടിചേര്‍ക്കലും ചെയ്യുക",
-    "description": "English: Import and append"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExport": {
     "message": "എക്സ്പോര്‍ട്ട്‌",
-    "description": "English: Export"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExportFilename": {
     "message": "എന്‍റെ-യുബ്ലോക്ക്-സ്റ്റാറ്റിക്ക്-ഫില്‍ട്ടറുകള്‍_{{datetime}}.txt",
@@ -581,7 +597,7 @@
   },
   "rulesExport": {
     "message": "ഫയലിലേക്ക് എക്സ്പോര്‍ട്ട്‌ ചെയ്യുക",
-    "description": ""
+    "description": "Button in the 'My rules' pane"
   },
   "rulesDefaultFileName": {
     "message": "എന്‍റെ-യുബ്ലോക്ക്-ഡൈനാമിക്-നിയമങ്ങള്‍_{{datetime}}.txt",
@@ -617,11 +633,11 @@
   },
   "whitelistImport": {
     "message": "ഇമ്പോര്‍ട്ടും കൂട്ടിചേര്‍ക്കലും ചെയ്യുക",
-    "description": "English: Import and append"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExport": {
     "message": "എക്സ്പോര്‍ട്ട്‌",
-    "description": "English: Export"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExportFilename": {
     "message": "എന്‍റെ-യുബ്ലോക്ക്-വൈറ്റ്ലിസ്റ്റ്_{{datetime}}.txt",
@@ -880,7 +896,7 @@
     "description": "Label for radio-button to pick export text format"
   },
   "supportOpenButton": {
-    "message": "Open",
+    "message": "തുറക്കുക",
     "description": "Text for button which open an external webpage in Support pane"
   },
   "supportReportSpecificButton": {
@@ -951,6 +967,14 @@
     "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported.",
     "description": "A paragraph in the filter issue reporter section"
   },
+  "supportS6P2S1": {
+    "message": "Filter lists are updated daily. Be sure your issue has not already been addressed in the most recent filter lists.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6P2S2": {
+    "message": "Verify that the issue still exists after reloading the problematic webpage.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
   "supportS6URL": {
     "message": "Address of the web page:",
     "description": "Label for the URL of the page"
@@ -985,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "Opens unwanted tabs or windows",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "Leads to badware, phishing",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1115,6 +1143,10 @@
     "message": "ഓഫ്",
     "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
   },
+  "docblockedTitle": {
+    "message": "Page blocked",
+    "description": "Used as a title for the document-blocked page"
+  },
   "docblockedPrompt1": {
     "message": "താഴെ പറയുന്ന പേജ് ലോഡ് ചെയ്യുന്നത് യുബ്ലോക്ക് ഒറിജിന്‍ തടഞ്ഞിരിക്കുന്നു:",
     "description": "Used in the strict-blocking page"
@@ -1139,6 +1171,10 @@
     "message": "ഈ വിന്‍ഡോ ക്ലോസ് ചെയ്യുക",
     "description": "English: Close this window"
   },
+  "docblockedDontWarn": {
+    "message": "Don't warn me again about this site",
+    "description": "Label for checkbox in document-blocked page"
+  },
   "docblockedProceed": {
     "message": "{{hostname}}ലേക്ക് കര്‍ശന ബ്ലോക്കിംഗ് ഡിസേബിള്‍ ചെയ്യുക",
     "description": "English: Disable strict blocking for {{hostname}} ..."
@@ -1150,6 +1186,14 @@
   "docblockedDisablePermanent": {
     "message": "സ്ഥിരമായി",
     "description": "English: Permanently"
+  },
+  "docblockedDisable": {
+    "message": "Proceed",
+    "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "The blocked page wants to redirect to another site. If you choose to proceed, you will navigate directly to: {{url}}",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "ക്ലൌഡ് സ്റ്റോറേജിലേക്ക് എക്സ്പോര്‍ട്ട്‌ ചെയ്യുക",
@@ -1203,6 +1247,10 @@
     "message": "താൽക്കാലികമായി വലിയ മീഡിയ അനുവദിക്കുക",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
   },
+  "contextMenuViewSource": {
+    "message": "View source code…",
+    "description": "A context menu entry, to view the source code of the target resource"
+  },
   "shortcutCapturePlaceholder": {
     "message": "ഒരു കുറുക്കുവഴി ടൈപ്പുചെയ്യുക",
     "description": "Placeholder string for input field used to capture a keyboard shortcut"
@@ -1222,6 +1270,10 @@
   "toggleCosmeticFiltering": {
     "message": "Toggle cosmetic filtering",
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
+  },
+  "toggleJavascript": {
+    "message": "Toggle JavaScript",
+    "description": "Label for keyboard shortcut used to toggle no-scripting switch"
   },
   "relaxBlockingMode": {
     "message": "തടയൽ മോഡ് വിശ്രമിക്കുക",
@@ -1246,6 +1298,14 @@
   "clickToLoad": {
     "message": "ലോഡുചെയ്യാൻ ക്ലിക്കുചെയ്യുക",
     "description": "Message used in frame placeholders"
+  },
+  "linterMainReport": {
+    "message": "Errors: {{count}}",
+    "description": "Summary of number of errors as reported by the linter "
+  },
+  "unprocessedRequestTooltip": {
+    "message": "Could not filter properly at browser launch. Reload the page to ensure proper filtering.",
+    "description": "A warning which will appear in the popup panel if needed"
   },
   "dummy": {
     "message": "This entry must be the last one",

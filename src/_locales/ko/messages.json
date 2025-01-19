@@ -12,7 +12,7 @@
     "description": "English: uBlock₀ — Dashboard"
   },
   "dashboardUnsavedWarning": {
-    "message": "주의! 변경사항을 저장하지 않았습니다.",
+    "message": "경고! 저장되지 않은 변경 사항이 있습니다",
     "description": "A warning in the dashboard when navigating away from unsaved changes"
   },
   "dashboardUnsavedWarningStay": {
@@ -275,13 +275,13 @@
     "message": "버전",
     "description": "Example of use: Version 1.26.4"
   },
-  "popup3pScriptFilterTip": {
-    "message": "↑: 보조 스크립트 행 강조",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
+  "popup3pScriptFilter": {
+    "message": "스크립트",
+    "description": "Appears as an option to filter out firewall rows"
   },
-  "popup3pFrameFilterTip": {
-    "message": "↑: 보조 프레임 행 강조",
-    "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
+  "popup3pFrameFilter": {
+    "message": "프레임",
+    "description": "Appears as an option to filter out firewall rows"
   },
   "pickerCreate": {
     "message": "생성",
@@ -469,35 +469,43 @@
   },
   "3pGroupDefault": {
     "message": "Ublock₀ 제공",
-    "description": "Header for the uBlock filters section in 'Filter lists pane'"
+    "description": "Filter lists section name"
   },
   "3pGroupAds": {
     "message": "광고",
-    "description": "English: Ads"
+    "description": "Filter lists section name"
   },
   "3pGroupPrivacy": {
     "message": "개인정보",
-    "description": "English: Privacy"
+    "description": "Filter lists section name"
   },
   "3pGroupMalware": {
     "message": "멀웨어 도메인",
-    "description": "English: Malware domains"
+    "description": "Filter lists section name"
+  },
+  "3pGroupSocial": {
+    "message": "소셜 위젯",
+    "description": "Filter lists section name"
+  },
+  "3pGroupCookies": {
+    "message": "쿠키 알림",
+    "description": "Filter lists section name"
   },
   "3pGroupAnnoyances": {
     "message": "골칫거리",
-    "description": "The header identifying the filter lists in the category 'annoyances'"
+    "description": "Filter lists section name"
   },
   "3pGroupMultipurpose": {
     "message": "다목적",
-    "description": "English: Multipurpose"
+    "description": "Filter lists section name"
   },
   "3pGroupRegions": {
     "message": "지역, 언어",
-    "description": "English: Regions, languages"
+    "description": "Filter lists section name"
   },
   "3pGroupCustom": {
     "message": "사용자 지정",
-    "description": "English: Custom"
+    "description": "Filter lists section name"
   },
   "3pImport": {
     "message": "불러오기..",
@@ -527,17 +535,25 @@
     "message": "네트워크 오류로 인해 리소스가 업데이트되지 못했습니다.",
     "description": "used as a tooltip for error icon beside a list"
   },
-  "1pFormatHint": {
-    "message": "한 줄에 한 개의 필터를 입력하세요. 필터는 순수 호스트이름, 혹은 Adblock Plus-호환 필터가 될 수 있습니다. 시작 부분이 &lsquo;!&rsquo; 로 시작되면 무시됩니다.",
-    "description": "Short information about how to create custom filters"
+  "1pTrustWarning": {
+    "message": "신뢰할 수 없는 출처의 필터를 추가하지 마십시오.",
+    "description": "Warning against copy-pasting filters from random sources"
+  },
+  "1pEnableMyFiltersLabel": {
+    "message": "내 사용자 정의 필터 활성화",
+    "description": "Label for the checkbox use to enable/disable 'My filters' list"
+  },
+  "1pTrustMyFiltersLabel": {
+    "message": "신뢰가 필요한 사용자 정의 필터 허용",
+    "description": "Label for the checkbox use to trust the content of 'My filters' list"
   },
   "1pImport": {
     "message": "가져오기 및 추가하기",
-    "description": "English: Import and append"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExport": {
     "message": "내보내기",
-    "description": "English: Export"
+    "description": "Button in the 'My filters' pane"
   },
   "1pExportFilename": {
     "message": "ublock-고정필터_{{datetime}}.txt",
@@ -581,7 +597,7 @@
   },
   "rulesExport": {
     "message": "파일로 내보내기...",
-    "description": ""
+    "description": "Button in the 'My rules' pane"
   },
   "rulesDefaultFileName": {
     "message": "ublock-동적규칙_{{datetime}}.txt",
@@ -617,11 +633,11 @@
   },
   "whitelistImport": {
     "message": "가져오기 및 추가하기",
-    "description": "English: Import and append"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExport": {
     "message": "내보내기",
-    "description": "English: Export"
+    "description": "Button in the 'Trusted sites' pane"
   },
   "whitelistExportFilename": {
     "message": "ublock-제외목록_{{datetime}}.txt",
@@ -951,6 +967,14 @@
     "message": "봉사자들이 중복 신고로 인해 부담을 겪지 않도록, 해당 이슈가 이미 신고되지는 않았는지 확인해주시기 바랍니다.",
     "description": "A paragraph in the filter issue reporter section"
   },
+  "supportS6P2S1": {
+    "message": "필터 목록은 매일 갱신됩니다. 최신 필터 목록에서 문제가 이미 해결되진 않았는지 확인하세요.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6P2S2": {
+    "message": "문제가 생긴 웹페이지를 새로고침해도 문제가 여전히 남아 있는지 확인하세요.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
   "supportS6URL": {
     "message": "웹 페이지의 주소:",
     "description": "Label for the URL of the page"
@@ -985,6 +1009,10 @@
   },
   "supportS6Select1Option6": {
     "message": "원치 않는 탭이나 창을 엽니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option7": {
+    "message": "악성코드, 피싱으로 유도합니다",
     "description": "An entry in the widget used to select the type of issue"
   },
   "supportS6Checkbox1": {
@@ -1115,6 +1143,10 @@
     "message": "끄기",
     "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
   },
+  "docblockedTitle": {
+    "message": "페이지 차단됨",
+    "description": "Used as a title for the document-blocked page"
+  },
   "docblockedPrompt1": {
     "message": "uBlock Origin이 다음 페이지를 로드하는것을 방지했습니다:",
     "description": "Used in the strict-blocking page"
@@ -1139,6 +1171,10 @@
     "message": "이 창을 닫기",
     "description": "English: Close this window"
   },
+  "docblockedDontWarn": {
+    "message": "더 이상 이 사이트에 대해 경고 하지 않기",
+    "description": "Label for checkbox in document-blocked page"
+  },
   "docblockedProceed": {
     "message": "{{hostname}}에서 엄격 차단기능 끄기",
     "description": "English: Disable strict blocking for {{hostname}} ..."
@@ -1150,6 +1186,14 @@
   "docblockedDisablePermanent": {
     "message": "항상",
     "description": "English: Permanently"
+  },
+  "docblockedDisable": {
+    "message": "계속",
+    "description": "Button text to navigate to the blocked page"
+  },
+  "docblockedRedirectPrompt": {
+    "message": "차단된 페이지에서 다른 사이트로 이동하려 합니다. 계속하시면, {{url}} 주소로 바로 이동합니다.",
+    "description": "Text warning about an incoming redirect"
   },
   "cloudPush": {
     "message": "클라우드 저장소로 내보내기",
@@ -1203,6 +1247,10 @@
     "message": "이번만 대형 미디어 구성요소 허용",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
   },
+  "contextMenuViewSource": {
+    "message": "소스 코드 보기…",
+    "description": "A context menu entry, to view the source code of the target resource"
+  },
   "shortcutCapturePlaceholder": {
     "message": "단축키를 입력하세요",
     "description": "Placeholder string for input field used to capture a keyboard shortcut"
@@ -1222,6 +1270,10 @@
   "toggleCosmeticFiltering": {
     "message": "표면 필터 토글",
     "description": "Label for keyboard shortcut used to toggle cosmetic filtering"
+  },
+  "toggleJavascript": {
+    "message": "JavaScript 토글",
+    "description": "Label for keyboard shortcut used to toggle no-scripting switch"
   },
   "relaxBlockingMode": {
     "message": "차단 모드 완화",
@@ -1246,6 +1298,14 @@
   "clickToLoad": {
     "message": "불러오려면 클릭하기",
     "description": "Message used in frame placeholders"
+  },
+  "linterMainReport": {
+    "message": "오류: {{count}}",
+    "description": "Summary of number of errors as reported by the linter "
+  },
+  "unprocessedRequestTooltip": {
+    "message": "브라우저 시작 시 필터링을 제대로 수행할 수 없습니다.\n정확한 필터링을 위해 페이지를 새로고침해주세요.",
+    "description": "A warning which will appear in the popup panel if needed"
   },
   "dummy": {
     "message": "This entry must be the last one",

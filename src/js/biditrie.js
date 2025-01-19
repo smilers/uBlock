@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock Origin - a browser extension to block requests.
+    uBlock Origin - a comprehensive, efficient content blocker
     Copyright (C) 2019-present Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -18,10 +18,6 @@
 
     Home: https://github.com/gorhill/uBlock
 */
-
-/* globals WebAssembly, vAPI */
-
-'use strict';
 
 /*******************************************************************************
 
@@ -124,6 +120,15 @@ const BCELL_EXTRA_MAX = 0x00FFFFFF;
 const toSegmentInfo = (aL, l, r) => ((r - l) << 24) | (aL + l);
 const roundToPageSize = v => (v + PAGE_SIZE-1) & ~(PAGE_SIZE-1);
 
+// http://www.cse.yorku.ca/~oz/hash.html#djb2
+const i32Checksum = (buf32) => {
+    const n = buf32.length;
+    let hash = 177573 ^ n;
+    for ( let i = 0; i < n; i++ ) {
+        hash = (hash << 5) + hash ^ buf32[i];
+    }
+    return hash;
+};
 
 class BidiTrieContainer {
 
@@ -576,34 +581,19 @@ class BidiTrieContainer {
         };
     }
 
-    serialize(encoder) {
-        if ( encoder instanceof Object ) {
-            return encoder.encode(
-                this.buf32.buffer,
-                this.buf32[CHAR1_SLOT]
-            );
-        }
-        return Array.from(
-            new Uint32Array(
-                this.buf32.buffer,
-                0,
-                this.buf32[CHAR1_SLOT] + 3 >>> 2
-            )
-        );
+    toSelfie() {
+        const buf32 = this.buf32.subarray(0, this.buf32[CHAR1_SLOT] + 3 >>> 2);
+        return { buf32, checksum: i32Checksum(buf32) };
     }
 
-    unserialize(selfie, decoder) {
-        const shouldDecode = typeof selfie === 'string';
-        let byteLength = shouldDecode
-            ? decoder.decodeSize(selfie)
-            : selfie.length << 2;
+    fromSelfie(selfie) {
+        if ( typeof selfie !== 'object' || selfie === null ) { return false; }
+        if ( selfie.buf32 instanceof Uint32Array === false ) { return false; }
+        if ( selfie.checksum !== i32Checksum(selfie.buf32) ) { return false; }
+        const byteLength = selfie.buf32.length << 2;
         if ( byteLength === 0 ) { return false; }
         this.reallocateBuf(byteLength);
-        if ( shouldDecode ) {
-            decoder.decode(selfie, this.buf8.buffer);
-        } else {
-            this.buf32.set(selfie);
-        }
+        this.buf32.set(selfie.buf32);
         return true;
     }
 
@@ -715,42 +705,57 @@ class BidiTrieContainer {
                         this.done = true;
                         return this;
                     }
-                    this.charPtr = this.forks.pop();
+                    this.pattern = this.forks.pop();
+                    this.dir = this.forks.pop();
                     this.icell = this.forks.pop();
                 }
+                const buf32 = this.container.buf32;
+                const buf8 = this.container.buf8;
                 for (;;) {
-                    const idown = this.container.buf32[this.icell+CELL_OR];
-                    if ( idown !== 0 ) {
-                        this.forks.push(idown, this.charPtr);
+                    const ialt = buf32[this.icell+CELL_OR];
+                    const v = buf32[this.icell+SEGMENT_INFO];
+                    const offset = v & 0x00FFFFFF;
+                    let i0 = buf32[CHAR0_SLOT] + offset;
+                    const len = v >>> 24;
+                    for ( let i = 0; i < len; i++ ) {
+                        this.charBuf[i] = buf8[i0+i];
                     }
-                    const v = this.container.buf32[this.icell+SEGMENT_INFO];
-                    let i0 = this.container.buf32[CHAR0_SLOT] + (v & 0x00FFFFFF);
-                    const i1 = i0 + (v >>> 24);
-                    while ( i0 < i1 ) {
-                        this.charBuf[this.charPtr] = this.container.buf8[i0];
-                        this.charPtr += 1;
-                        i0 += 1;
+                    if ( len !== 0 && ialt !== 0 ) {
+                        this.forks.push(ialt, this.dir, this.pattern);
                     }
-                    this.icell = this.container.buf32[this.icell+CELL_AND];
-                    if ( this.icell === 0 ) {
-                        return this.toPattern();
+                    const inext = buf32[this.icell+CELL_AND];
+                    if ( len !== 0 ) {
+                        const s = this.textDecoder.decode(
+                            new Uint8Array(this.charBuf.buffer, 0, len)
+                        );
+                        if ( this.dir > 0 ) {
+                            this.pattern += s;
+                        } else if ( this.dir < 0 ) {
+                            this.pattern = s + this.pattern;
+                        }
                     }
-                    if ( this.container.buf32[this.icell+SEGMENT_INFO] === 0 ) {
-                        this.icell = this.container.buf32[this.icell+CELL_AND];
-                        return this.toPattern();
+                    this.icell = inext;
+                    if ( len !== 0 ) { continue; }
+                    // boundary cell
+                    if ( ialt !== 0 ) {
+                        if ( inext === 0 ) {
+                            this.icell = ialt;
+                            this.dir = -1;
+                        } else {
+                            this.forks.push(ialt, -1, this.pattern);
+                        }
+                    }
+                    if ( offset !== 0 ) {
+                        this.value = { pattern: this.pattern, iextra: offset };
+                        return this;
                     }
                 }
-            },
-            toPattern() {
-                this.value = this.textDecoder.decode(
-                    new Uint8Array(this.charBuf.buffer, 0, this.charPtr)
-                );
-                return this;
             },
             container: this,
             icell: iroot,
             charBuf: new Uint8Array(256),
-            charPtr: 0,
+            pattern: '',
+            dir: 1,
             forks: [],
             textDecoder: new TextDecoder(),
             [Symbol.iterator]() { return this; },

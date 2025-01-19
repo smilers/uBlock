@@ -1,6 +1,6 @@
 /*******************************************************************************
 
-    uBlock Origin - a browser extension to block requests.
+    uBlock Origin - a comprehensive, efficient content blocker
     Copyright (C) 2015-present Raymond Hill
 
     This program is free software: you can redistribute it and/or modify
@@ -18,8 +18,6 @@
 
     Home: https://github.com/gorhill/uBlock
 */
-
-'use strict';
 
 /******************************************************************************/
 
@@ -150,9 +148,14 @@ const fromExtendedFilter = function(details) {
     }
 
     const hostnameMatches = hn => {
-        return hn === '' ||
-               reHostname.test(hn) ||
-               reEntity !== undefined && reEntity.test(hn);
+        if ( hn === '' ) { return true; }
+        if ( hn.charCodeAt(0) === 0x2F /* / */ ) {
+            return (new RegExp(hn.slice(1,-1))).test(hostname);
+        }
+        if ( reHostname.test(hn) ) { return true; }
+        if ( reEntity === undefined ) { return false; }
+        if ( reEntity.test(hn) ) { return true; }
+        return false;
     };
 
     const response = Object.create(null);
@@ -183,33 +186,14 @@ const fromExtendedFilter = function(details) {
             const filterType = fargs[0];
 
             // https://github.com/gorhill/uBlock/issues/2763
-            if (
-                filterType >= 0 &&
-                filterType <= 5 &&
-                details.ignoreGeneric
-            ) {
-                continue;
-            }
+            if ( filterType === 0 && details.ignoreGeneric ) { continue; }
 
             // Do not confuse cosmetic filters with HTML ones.
             if ( (filterType === 64) !== isHtmlFilter ) { continue; }
 
             switch ( filterType ) {
             // Lowly generic cosmetic filters
-            case 0: // simple id-based
-                if ( exception ) { break; }
-                if ( fargs[1] !== selector.slice(1) ) { break; }
-                if ( selector.charAt(0) !== '#' ) { break; }
-                found = prefix + selector;
-                break;
-            case 2: // simple class-based
-                if ( exception ) { break; }
-                if ( fargs[1] !== selector.slice(1) ) { break; }
-                if ( selector.charAt(0) !== '.' ) { break; }
-                found = prefix + selector;
-                break;
-            case 1: // complex id-based
-            case 3: // complex class-based
+            case 0:
                 if ( exception ) { break; }
                 if ( fargs[2] !== selector ) { break; }
                 found = prefix + selector;
@@ -226,6 +210,7 @@ const fromExtendedFilter = function(details) {
             case 8:
             // HTML filtering
             // Response header filtering
+            /* fallthrough */
             case 64: {
                 if ( exception !== ((fargs[2] & 0b001) !== 0) ) { break; }
                 const isProcedural = (fargs[2] & 0b010) !== 0;
@@ -251,7 +236,7 @@ const fromExtendedFilter = function(details) {
             // Scriptlet injection
             case 32:
                 if ( exception !== ((fargs[2] & 0b001) !== 0) ) { break; }
-                if ( fargs[3] !== selector ) { break; }
+                if ( fargs[3] !== details.compiled ) { break; }
                 if ( hostnameMatches(fargs[1]) ) {
                     found = fargs[1] + prefix + selector;
                 }
